@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro PDF - Advanced Image to PDF Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-file-pdf logo-icon"></i>
+                <h1 class="logo-text">Pro<span>PDF</span></h1>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#converter" class="nav-link">Converter</a></li>
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#how-it-works" class="nav-link">Guide</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <section class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Transform Images to <span>Professional PDFs</span></h2>
+                    <p class="hero-subtitle">Advanced conversion with customizable layouts, borders, and page settings</p>
+                    <div class="hero-cta">
+                        <button class="btn btn-primary" id="start-converting">
+                            <i class="fas fa-bolt"></i> Start Converting
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-play"></i> Watch Demo
+                        </button>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>100% Free Tool</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>No Uploads - Processing in Browser</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="PDF Conversion Illustration">
+                    <div class="image-badge">
+                        <i class="fas fa-crown"></i>
+                        <span>Most Advanced Online Converter</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="converter" class="converter-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Image to PDF Converter</h2>
+                    <p class="section-subtitle">Upload your images and customize the PDF output</p>
+                </div>
+                
+                <div class="converter-grid">
+                    <div class="upload-card">
+                        <div class="upload-area" id="drop-area">
+                            <div class="upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <h3 class="upload-title">Drag & Drop Images Here</h3>
+                            <p class="upload-subtitle">or click to browse files</p>
+                            <input type="file" id="file-input" accept="image/*" multiple>
+                            <label for="file-input" class="btn btn-upload">
+                                <i class="fas fa-folder-open"></i> Select Files
+                            </label>
+                            <div class="supported-formats">
+                                <span>Supported formats: JPG, PNG, GIF, BMP, WEBP</span>
+                            </div>
+                        </div>
+                        
+                        <div id="file-list" class="file-list-container">
+                            <div class="file-list-header">
+                                <h4>Selected Files</h4>
+                                <button id="clear-all" class="btn-text">
+                                    <i class="fas fa-trash-alt"></i> Clear All
+                                </button>
+                            </div>
+                            <div id="file-list" class="file-list"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-card">
+                        <div class="settings-tabs">
+                            <button class="tab-btn active" data-tab="layout">Layout</button>
+                            <button class="tab-btn" data-tab="design">Design</button>
+                            <button class="tab-btn" data-tab="output">Output</button>
+                        </div>
+                        
+                        <div class="tab-content active" data-tab="layout">
+                            <div class="setting-group">
+                                <label for="page-size">Page Size</label>
+                                <select id="page-size" class="form-select">
+                                    <option value="a4">A4 (210 × 297 mm)</option>
+                                    <option value="letter">Letter (216 × 279 mm)</option>
+                                    <option value="legal">Legal (216 × 356 mm)</option>
+                                    <option value="a5">A5 (148 × 210 mm)</option>
+                                    <option value="custom">Custom Size</option>
+                                </select>
+                            </div>
+                            
+                            <div class="setting-group custom-size hidden" id="custom-size-group">
+                                <div class="size-inputs">
+                                    <div class="input-group">
+                                        <label for="custom-width">Width (mm)</label>
+                                        <input type="number" id="custom-width" min="50" max="500" value="210" class="form-input">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="custom-height">Height (mm)</label>
+                                        <input type="number" id="custom-height" min="50" max="500" value="297" class="form-input">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="page-layout">Page Orientation</label>
+                                <div class="orientation-options">
+                                    <label class="option-btn">
+                                        <input type="radio" name="orientation" value="portrait" checked>
+                                        <i class="fas fa-portrait"></i>
+                                        <span>Portrait</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="orientation" value="landscape">
+                                        <i class="fas fa-landscape"></i>
+                                        <span>Landscape</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="orientation" value="auto">
+                                        <i class="fas fa-sync-alt"></i>
+                                        <span>Auto</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="image-per-page">Images Per Page</label>
+                                <div class="grid-options">
+                                    <label class="option-btn">
+                                        <input type="radio" name="images-per-page" value="1" checked>
+                                        <div class="grid-preview single"></div>
+                                        <span>Single</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="images-per-page" value="2">
+                                        <div class="grid-preview vertical"></div>
+                                        <span>Vertical</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="images-per-page" value="4">
+                                        <div class="grid-preview grid"></div>
+                                        <span>Grid</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="images-per-page" value="custom">
+                                        <div class="grid-preview custom"></div>
+                                        <span>Custom</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group custom-grid hidden" id="custom-grid-group">
+                                <label>Custom Grid Layout</label>
+                                <div class="grid-controls">
+                                    <div class="input-group">
+                                        <label for="grid-rows">Rows</label>
+                                        <input type="number" id="grid-rows" min="1" max="10" value="2" class="form-input">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="grid-cols">Columns</label>
+                                        <input type="number" id="grid-cols" min="1" max="10" value="2" class="form-input">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="margin-size">Margin Size: <span id="margin-value">10</span>mm</label>
+                                <input type="range" id="margin-size" min="0" max="30" value="10" class="form-range">
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" data-tab="design">
+                            <div class="setting-group">
+                                <label for="border-style">Border Style</label>
+                                <div class="border-options">
+                                    <label class="option-btn">
+                                        <input type="radio" name="border-style" value="none" checked>
+                                        <div class="border-preview none"></div>
+                                        <span>None</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="border-style" value="solid">
+                                        <div class="border-preview solid"></div>
+                                        <span>Solid</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="border-style" value="dashed">
+                                        <div class="border-preview dashed"></div>
+                                        <span>Dashed</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="border-style" value="dotted">
+                                        <div class="border-preview dotted"></div>
+                                        <span>Dotted</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group border-options hidden" id="border-options-group">
+                                <div class="border-controls">
+                                    <div class="input-group">
+                                        <label for="border-width">Border Width: <span id="border-width-value">2</span>px</label>
+                                        <input type="range" id="border-width" min="1" max="10" value="2" class="form-range">
+                                    </div>
+                                    <div class="input-group">
+                                        <label for="border-color">Border Color</label>
+                                        <input type="color" id="border-color" value="#3a86ff" class="form-color">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="page-spread">Page Spread</label>
+                                <select id="page-spread" class="form-select">
+                                    <option value="none">None</option>
+                                    <option value="book">Book Spread</option>
+                                    <option value="magazine">Magazine Spread</option>
+                                </select>
+                                <p class="setting-description">For professional printing and display purposes</p>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="background-color">Page Background</label>
+                                <select id="background-color" class="form-select">
+                                    <option value="#ffffff">White</option>
+                                    <option value="#f8f9fa">Light Gray</option>
+                                    <option value="#f1f3f5">Gray</option>
+                                    <option value="#fff8e6">Cream</option>
+                                    <option value="#e6f9ff">Light Blue</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" data-tab="output">
+                            <div class="setting-group">
+                                <label for="compression">Image Quality</label>
+                                <select id="compression" class="form-select">
+                                    <option value="1.0">High Quality (no compression)</option>
+                                    <option value="0.8">Medium Quality (recommended)</option>
+                                    <option value="0.6">Low Quality (smaller file)</option>
+                                </select>
+                                <p class="setting-description">Higher quality results in larger PDF files</p>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="output-filename">Output Filename</label>
+                                <div class="filename-input">
+                                    <input type="text" id="output-filename" placeholder="document" class="form-input">
+                                    <span class="filename-ext">.pdf</span>
+                                </div>
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label>PDF Metadata</label>
+                                <input type="text" id="pdf-title" placeholder="Document Title" class="form-input">
+                                <input type="text" id="pdf-author" placeholder="Author (optional)" class="form-input">
+                                <input type="text" id="pdf-subject" placeholder="Subject (optional)" class="form-input">
+                            </div>
+                            
+                            <div class="setting-group">
+                                <label for="pdf-protection">Password Protection</label>
+                                <div class="protection-options">
+                                    <label class="option-btn">
+                                        <input type="radio" name="pdf-protection" value="none" checked>
+                                        <i class="fas fa-unlock"></i>
+                                        <span>None</span>
+                                    </label>
+                                    <label class="option-btn">
+                                        <input type="radio" name="pdf-protection" value="password">
+                                        <i class="fas fa-lock"></i>
+                                        <span>Password</span>
+                                    </label>
+                                </div>
+                                
+                                <div class="password-fields hidden" id="password-fields">
+                                    <input type="password" id="pdf-password" placeholder="Enter password" class="form-input">
+                                    <input type="password" id="pdf-password-confirm" placeholder="Confirm password" class="form-input">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="generate-pdf" class="btn btn-generate">
+                            <i class="fas fa-file-pdf"></i> Generate PDF
+                        </button>
+                        
+                        <div id="progress" class="progress-container hidden">
+                            <div class="progress-info">
+                                <span class="progress-text">Processing...</span>
+                                <span class="progress-percent">0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Advanced PDF Features</h2>
+                    <p class="section-subtitle">Everything you need to create professional PDF documents</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-th"></i>
+                        </div>
+                        <h3 class="feature-title">Custom Layouts</h3>
+                        <p class="feature-description">Arrange multiple images per page with flexible grid layouts and precise positioning.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-border-style"></i>
+                        </div>
+                        <h3 class="feature-title">Border Styles</h3>
+                        <p class="feature-description">Add solid, dashed, or dotted borders with customizable width and color.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="feature-title">Page Spreads</h3>
+                        <p class="feature-description">Create professional book or magazine spreads for printing and display.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-compress-alt"></i>
+                        </div>
+                        <h3 class="feature-title">Quality Control</h3>
+                        <p class="feature-description">Adjust image compression to balance quality and file size.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="feature-title">Background Colors</h3>
+                        <p class="feature-description">Choose from multiple page background colors to suit your needs.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <h3 class="feature-title">Password Protection</h3>
+                        <p class="feature-description">Secure your PDFs with password encryption when needed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="steps-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">How It Works</h2>
+                    <p class="section-subtitle">Convert images to PDF in just three simple steps</p>
+                </div>
+                
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Upload Images</h3>
+                            <p class="step-description">Drag & drop or select multiple images from your device. Reorder them as needed.</p>
+                        </div>
+                        <div class="step-illustration">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Customize Settings</h3>
+                            <p class="step-description">Adjust page layout, borders, margins, and other advanced options.</p>
+                        </div>
+                        <div class="step-illustration">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 class="step-title">Download PDF</h3>
+                            <p class="step-description">Generate and download your professionally formatted PDF document.</p>
+                        </div>
+                        <div class="step-illustration">
+                            <i class="fas fa-file-download"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                    <p class="section-subtitle">Find answers to common questions about Pro PDF</p>
+                </div>
+                
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Is Pro PDF really free to use?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, Pro PDF is completely free to use with no hidden charges. You can convert as many images to PDF as you need without any limitations. We believe in providing powerful tools without putting them behind paywalls.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Are my images uploaded to a server?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No, all processing happens directly in your browser. Your images never leave your device, ensuring complete privacy and security. This also means your files aren't stored anywhere after conversion.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What image formats are supported?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Pro PDF supports all common image formats including JPG, PNG, GIF, BMP, and WebP. The converter will automatically handle different formats and optimize them for the PDF output.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I rearrange the order of images?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Yes, you can easily drag and drop images in the file list to reorder them before generating your PDF. The order you see in the list is the order they'll appear in the PDF document.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Is there a limit to the number of images?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>The only limit is your device's memory. For best performance, we recommend converting up to 100 images at a time. For larger batches, consider splitting them into multiple conversions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I use this for commercial purposes?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Absolutely! Pro PDF can be used for both personal and commercial projects without any restrictions. Convert images to PDF for client work, business documents, or any other professional needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Pro<span>PDF</span></h3>
+                    </div>
+                    <p class="footer-description">The most advanced free image to PDF converter online. Create professional PDF documents with ease.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#converter">Converter</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Status</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2023 Pro PDF. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://unpkg.com/sortablejs@1.14.0/Sortable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
